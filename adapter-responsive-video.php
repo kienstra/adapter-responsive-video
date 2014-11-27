@@ -58,7 +58,7 @@ class Adapter_Responsive_Video extends WP_Widget {
 		$aspect_ratio_class = isset( $instance[ 'aspect_ratio_class' ] ) ? $instance[ 'aspect_ratio_class' ] : "";
 		if ( $video_source ) {
 			$bootstrap_responsive_video = get_bootstrap_responsive_video( $video_source , $aspect_ratio_class );
-			echo $before_widget . $bootstrap_responsive_video . $after_widget;
+			echo $args[ 'before_widget' ] . $bootstrap_responsive_video . $args[ 'after_widget' ];
 		}
 	}
 
