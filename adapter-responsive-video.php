@@ -54,7 +54,6 @@ class Adapter_Responsive_Video extends WP_Widget {
 	}
 
 	function widget( $args , $instance ) {
-		extract( $args ); // @todo: remove this
 		$video_source = isset( $instance[ 'video_source' ] ) ? $instance[ 'video_source' ] : "";
 		$aspect_ratio_class = isset( $instance[ 'aspect_ratio_class' ] ) ? $instance[ 'aspect_ratio_class' ] : "";
 		if ( $video_source ) {
