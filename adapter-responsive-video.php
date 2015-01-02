@@ -36,7 +36,7 @@ class Adapter_Responsive_Video extends WP_Widget {
 				<label for="<?php echo $this->get_field_id( 'video_url' ); ?>">
 	 			       <?php _e( 'Video url' , 'adapter-responsive-video' ); ?>
 				</label>
-				<input type="text" id="<?php echo $this->get_field_id( 'video_url' ); ?>" class="widefat" name="<?php echo $this->get_field_name( 'video_url' ); ?>" value="<?php echo esc_url( $video_url ); ?>" placeholder="e.g. www.youtube.com/watch?v=mOXRZ0eYSA0" \>
+				<input type="text" value="<?php echo esc_url( $video_url ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'video_url' ) ); ?>" class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'video_url' ) ); ?>" placeholder="e.g. www.youtube.com/watch?v=mOXRZ0eYSA0" \>
 			</p>
 		<?php
 	}
