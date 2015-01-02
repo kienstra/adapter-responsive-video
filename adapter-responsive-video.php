@@ -65,8 +65,7 @@ class Adapter_Responsive_Video extends WP_Widget {
 }
 
 function arv_get_raw_iframe_code( $url ) {
-	$url_no_tags = strip_tags( $url );
-	$raw_code = wp_oembed_get( $url_no_tags );
+	$raw_code = wp_oembed_get( esc_url( $url ) );
 	return $raw_code;
 }
 
