@@ -7,7 +7,7 @@ class Adapter_Responsive_Video extends WP_Widget {
 			'classname' => 'adapter-responsive-video',
 			'description' => __( 'Video from YouTube, Vimeo, and more.' , 'adapter-responsive-video' ),
 		);
-		 $this->WP_Widget( 'adapter_responsive_video' , __( 'Adapter Video' , 'adapter-responsive-video' ) , $options );
+		parent::__construct( 'adapter_responsive_video' , __( 'Adapter Video' , 'adapter-responsive-video' ) , $options );
 	}
 
 	public function form( $instance ) {
