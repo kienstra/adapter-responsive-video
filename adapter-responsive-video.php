@@ -72,13 +72,12 @@ function arv_get_raw_iframe_code( $url ) {
 
 function get_bootstrap_responsive_video( $src, $class ) {
 	$max_width = apply_filters( 'arv_video_max_width' , '580' );
-	return
-		"<div class='responsive-video-container' style='max-width:{$max_width}px'>
-			<div class='embed-responsive {$class}'>
-				 <iframe class='embed-responsive-item' src='{$src}'>
-				 </iframe>
-			 </div>
-		 </div>\n";
+	return '<div class="responsive-video-container" style="max-width:' . esc_attr( $max_width ) . 'px">
+				<div class="embed-responsive ' . esc_attr( $class ) . '">
+					<iframe class="embed-responsive-item" src="' . esc_url( $src ) . '">
+					</iframe>
+				 </div>
+			</div>';
 }
 
 function arv_get_iframe_attribute( $iframe, $attribute ) {
@@ -91,7 +90,7 @@ function arv_get_iframe_attribute( $iframe, $attribute ) {
 
 function arv_get_class_for_aspect_ratio( $embed_code ) {
 	$bootstrap_apect_ratio = get_bootstrap_aspect_ratio( $embed_code );
-	return	'embed-responsive-' . $bootstrap_apect_ratio;
+	return 'embed-responsive-' . $bootstrap_apect_ratio;
 }
 
 function get_bootstrap_aspect_ratio( $embed_code ) {
