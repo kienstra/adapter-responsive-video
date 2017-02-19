@@ -21,4 +21,3 @@ function arv_register_widget() {
 }
 
 require_once dirname( __FILE__ ) . '/php/class-adapter-responsive-video.php';
-require_once dirname( __FILE__ ) . '/php/class-video-markup.php';
