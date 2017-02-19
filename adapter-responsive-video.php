@@ -22,7 +22,7 @@ function arv_register_widget() {
 
 class Adapter_Responsive_Video extends WP_Widget {
 
-	function __construct() {
+	public function __construct() {
 		$options = array(
 			'classname' => 'adapter-responsive-video',
 			'description' => __( 'Video from YouTube, Vimeo, and more.' , 'adapter-responsive-video' ),
@@ -30,7 +30,7 @@ class Adapter_Responsive_Video extends WP_Widget {
 		 $this->WP_Widget( 'adapter_responsive_video' , __( 'Adapter Video' , 'adapter-responsive-video' ) , $options );
 	}
 
-	function form( $instance ) {
+	public function form( $instance ) {
 		$video_url = isset( $instance['video_url'] ) ? $instance['video_url'] : '';
 		?>
 			<p>
@@ -42,7 +42,7 @@ class Adapter_Responsive_Video extends WP_Widget {
 		<?php
 	}
 
-	function update( $new_instance, $previous_instance ) {
+	public function update( $new_instance, $previous_instance ) {
 		$instance = $previous_instance;
 		$video_url = isset( $new_instance['video_url'] ) ? $new_instance['video_url'] : '';
 		if ( $video_url ) {
@@ -54,7 +54,7 @@ class Adapter_Responsive_Video extends WP_Widget {
 		return $instance;
 	}
 
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 		$video_source = isset( $instance['video_source'] ) ? $instance['video_source'] : '';
 		$aspect_ratio_class = isset( $instance['aspect_ratio_class'] ) ? $instance['aspect_ratio_class'] : '';
 		if ( $video_source ) {
@@ -63,11 +63,10 @@ class Adapter_Responsive_Video extends WP_Widget {
 		}
 	}
 
-}
-
-function arv_get_raw_iframe_code( $url ) {
-	$raw_code = wp_oembed_get( esc_url( $url ) );
-	return $raw_code;
+	function arv_get_raw_iframe_code( $url ) {
+		$raw_code = wp_oembed_get( esc_url( $url ) );
+		return $raw_code;
+	}
 }
 
 function get_bootstrap_responsive_video( $src, $class ) {
