@@ -97,8 +97,9 @@ function get_bootstrap_aspect_ratio( $embed_code ) {
 	$aspect_ratio = arv_get_raw_aspect_ratio( $embed_code );
 	if ( is_ratio_closer_to_four_by_three( $aspect_ratio ) ) {
 		return '4by3';
+	} else {
+		return '16by9';
 	}
-	return '16by9';
 }
 
 function arv_get_raw_aspect_ratio( $embed_code ) {
