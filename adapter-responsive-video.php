@@ -23,9 +23,10 @@ function arv_register_widget() {
 class Adapter_Responsive_Video extends WP_Widget {
 
 	function __construct() {
-		 $options = array( 'classname' => 'adapter-responsive-video' ,
-				'description' => __( 'Video from YouTube, Vimeo, and more.' , 'adapter-responsive-video' ) ,
-		 );
+		$options = array(
+			'classname' => 'adapter-responsive-video',
+			'description' => __( 'Video from YouTube, Vimeo, and more.' , 'adapter-responsive-video' ),
+		);
 		 $this->WP_Widget( 'adapter_responsive_video' , __( 'Adapter Video' , 'adapter-responsive-video' ) , $options );
 	}
 
@@ -41,7 +42,7 @@ class Adapter_Responsive_Video extends WP_Widget {
 		<?php
 	}
 
-	function update( $new_instance , $previous_instance ) {
+	function update( $new_instance, $previous_instance ) {
 		$instance = $previous_instance;
 		$video_url = isset( $new_instance['video_url'] ) ? $new_instance['video_url'] : '';
 		if ( $video_url ) {
@@ -53,12 +54,12 @@ class Adapter_Responsive_Video extends WP_Widget {
 		return $instance;
 	}
 
-	function widget( $args , $instance ) {
-		$video_source = isset( $instance[ 'video_source' ] ) ? $instance[ 'video_source' ] : "";
-		$aspect_ratio_class = isset( $instance[ 'aspect_ratio_class' ] ) ? $instance[ 'aspect_ratio_class' ] : "";
+	function widget( $args, $instance ) {
+		$video_source = isset( $instance['video_source'] ) ? $instance['video_source'] : '';
+		$aspect_ratio_class = isset( $instance['aspect_ratio_class'] ) ? $instance['aspect_ratio_class'] : '';
 		if ( $video_source ) {
 			$bootstrap_responsive_video = get_bootstrap_responsive_video( $video_source , $aspect_ratio_class );
-			echo $args[ 'before_widget' ] . $bootstrap_responsive_video . $args[ 'after_widget' ];
+			echo $args['before_widget'] . $bootstrap_responsive_video . $args['after_widget'];
 		}
 	}
 
@@ -69,7 +70,7 @@ function arv_get_raw_iframe_code( $url ) {
 	return $raw_code;
 }
 
-function get_bootstrap_responsive_video( $src , $class ) {
+function get_bootstrap_responsive_video( $src, $class ) {
 	$max_width = apply_filters( 'arv_video_max_width' , '580' );
 	return
 		"<div class='responsive-video-container' style='max-width:{$max_width}px'>
@@ -80,11 +81,11 @@ function get_bootstrap_responsive_video( $src , $class ) {
 		 </div>\n";
 }
 
-function arv_get_iframe_attribute( $iframe , $attribute ) {
+function arv_get_iframe_attribute( $iframe, $attribute ) {
 	$pattern	= '/<iframe.*?' . $attribute . '=\"([^\"]+?)\"/';
 	preg_match( $pattern , $iframe , $matches );
-	if ( isset( $matches[ 1 ] ) ) {
-		return $matches[ 1 ];
+	if ( isset( $matches[1] ) ) {
+		return $matches[1];
 	}
 }
 
@@ -103,7 +104,7 @@ function get_bootstrap_aspect_ratio( $embed_code ) {
 
 function arv_get_raw_aspect_ratio( $embed_code ) {
 	$embed_width = arv_get_iframe_attribute( $embed_code , 'width' );
-	$embed_height =	arv_get_iframe_attribute( $embed_code , 'height' );
+	$embed_height = arv_get_iframe_attribute( $embed_code , 'height' );
 	if ( $embed_width && $embed_height ) {
 		$aspect_ratio = floatval( $embed_width ) / floatval( $embed_height );
 		return $aspect_ratio;
@@ -133,5 +134,5 @@ function arv_result_filter( $raw_embed_code ) {
 	$src = arv_get_iframe_attribute( $raw_embed_code , 'src' );
 	$class = arv_get_class_for_aspect_ratio( $raw_embed_code );
 	$bootstrap_markup = get_bootstrap_responsive_video( $src , $class );
-	return "<div class='post-responsive-video'>" . $bootstrap_markup . "</div>";
+	return "<div class='post-responsive-video'>" . $bootstrap_markup . '</div>';
 }
