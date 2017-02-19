@@ -10,14 +10,7 @@ Author URI: www.ryankienstra.com
 License: GPLv2
 */
 
-add_action( 'init' , 'arv_localization_callback' );
-function arv_localization_callback() {
-	load_plugin_textdomain( 'adapter-responsive-video' , false , basename( dirname( __FILE__ ) ) . '/languages' );
-}
+require_once dirname( __FILE__ ) . '/php/class-adapter-responsive-video-plugin.php';
 
-add_action( 'widgets_init' , 'arv_register_widget' );
-function arv_register_widget() {
-	register_widget( 'Adapter_Responsive_Video' );
-}
-
-require_once dirname( __FILE__ ) . '/php/class-adapter-responsive-video.php';
+global $adapter_responsive_video_plugin;
+$adapter_responsive_video_plugin = new Adapter_Responsive_Video_Plugin();

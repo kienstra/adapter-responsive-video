@@ -89,13 +89,13 @@ class Adapter_Responsive_Video extends WP_Widget {
 		}
 	}
 
-	function is_ratio_closer_to_four_by_three( $ratio ) {
+	public function is_ratio_closer_to_four_by_three( $ratio ) {
 		$difference_from_four_by_three = self::get_difference_from_four_by_three( $ratio );
 		$difference_from_sixteen_by_nine = self::get_difference_from_sixteen_by_nine( $ratio );
 		return ( $difference_from_four_by_three < $difference_from_sixteen_by_nine );
 	}
 
-	function get_difference_from_four_by_three( $value ) {
+	public function get_difference_from_four_by_three( $value ) {
 		$four_by_three = 1.3333;
 		$difference_from_four_by_three = abs( $value - $four_by_three );
 		return $difference_from_four_by_three;
