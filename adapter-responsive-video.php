@@ -127,11 +127,3 @@ function get_difference_from_sixteen_by_nine( $value ) {
 	$difference_from_sixteen_by_nine = abs( $value - $sixteen_by_nine );
 	return $difference_from_sixteen_by_nine;
 }
-
-add_filter( 'embed_oembed_html' , 'arv_result_filter' );
-function arv_result_filter( $raw_embed_code ) {
-	$src = arv_get_iframe_attribute( $raw_embed_code , 'src' );
-	$class = arv_get_class_for_aspect_ratio( $raw_embed_code );
-	$bootstrap_markup = get_bootstrap_responsive_video( $src , $class );
-	return "<div class='post-responsive-video'>" . $bootstrap_markup . '</div>';
-}
