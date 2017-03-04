@@ -1,7 +1,22 @@
 <?php
+/**
+ * Class Adapter_Responsive_Video
+ *
+ * @package AdapterResponsiveVideo
+ */
 
-class Adapter_Responsive_Video extends WP_Widget {
+namespace AdapterResponsiveVideo;
 
+/**
+ * Class Adapter_Responsive_Video
+ *
+ * @package AdapterResponsiveVideo
+ */
+class Adapter_Responsive_Video extends \WP_Widget {
+
+	/**
+	 * Instantiate the widget class.
+	 */
 	public function __construct() {
 		$options = array(
 			'classname' => 'adapter-responsive-video',
@@ -38,7 +53,7 @@ class Adapter_Responsive_Video extends WP_Widget {
 		$video_source = isset( $instance['video_source'] ) ? $instance['video_source'] : '';
 		$aspect_ratio_class = isset( $instance['aspect_ratio_class'] ) ? $instance['aspect_ratio_class'] : '';
 		if ( $video_source ) {
-			$bootstrap_responsive_video = $this->get( $video_source , $aspect_ratio_class );
+			$bootstrap_responsive_video = $this->get_markup( $video_source , $aspect_ratio_class );
 			echo $args['before_widget'] . $bootstrap_responsive_video . $args['after_widget'];
 		}
 	}
@@ -48,7 +63,7 @@ class Adapter_Responsive_Video extends WP_Widget {
 		return $raw_code;
 	}
 
-	public function get( $src, $class ) {
+	public function get_markup( $src, $class ) {
 		$max_width = apply_filters( 'arv_video_max_width' , '580' );
 		return '<div class="responsive-video-container" style="max-width:' . esc_attr( $max_width ) . 'px">
 					<div class="embed-responsive ' . esc_attr( $class ) . '">

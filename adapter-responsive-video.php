@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package AdapterResponsiveVideo
+ */
+namespace AdapterResponsiveVideo;
 
 /*
 Plugin Name: Adapter Responsive Video
