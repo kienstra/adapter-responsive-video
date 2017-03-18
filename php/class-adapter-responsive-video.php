@@ -137,27 +137,53 @@ class Adapter_Responsive_Video extends \WP_Widget {
 		}
 	}
 
+	/**
+	 * Get numeric aspect ratio of the embed markup.
+	 *
+	 * @param string $embed_code Markup, from which to find the aspect ratio.
+	 * @return float|false $aspect_ratio Width-to-height ratio of video, or false if these values are missing.
+	 */
 	public function get_raw_aspect_ratio( $embed_code ) {
 		$embed_width = self::get_iframe_attribute( $embed_code , 'width' );
 		$embed_height = self::get_iframe_attribute( $embed_code , 'height' );
 		if ( $embed_width && $embed_height ) {
 			$aspect_ratio = floatval( $embed_width ) / floatval( $embed_height );
 			return $aspect_ratio;
+		} else {
+			return false;
 		}
 	}
 
+	/**
+	 * Whether the aspect ratio is closer to four by three than sixteen by nine.
+	 *
+	 * @param float $ratio Width-to-height aspect ratio.
+	 * @return bool $is_closer Whether the ratio is closer to four by three.
+	 */
 	public function is_ratio_closer_to_four_by_three( $ratio ) {
 		$difference_from_four_by_three = self::get_difference_from_four_by_three( $ratio );
 		$difference_from_sixteen_by_nine = self::get_difference_from_sixteen_by_nine( $ratio );
 		return ( $difference_from_four_by_three < $difference_from_sixteen_by_nine );
 	}
 
+	/**
+	 * Get the numeric difference between the aspect ratio and a four by three ratio.
+	 *
+	 * @param float $value To compare to the ratio.
+	 * @return float $difference Numeric difference between the $value and $four_by_three.
+	 */
 	public function get_difference_from_four_by_three( $value ) {
 		$four_by_three = 1.3333;
 		$difference_from_four_by_three = abs( $value - $four_by_three );
 		return $difference_from_four_by_three;
 	}
 
+	/**
+	 * Get the numeric difference between the aspect ratio and a sixteen by nine ratio.
+	 *
+	 * @param float $value To compare to the ratio.
+	 * @return float $difference Numeric difference between the $value and $sixteen_by_nine.
+	 */
 	public function get_difference_from_sixteen_by_nine( $value ) {
 		$sixteen_by_nine = 1.777;
 		$difference_from_sixteen_by_nine = abs( $value - $sixteen_by_nine );
