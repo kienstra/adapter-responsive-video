@@ -128,16 +128,12 @@ class Adapter_Responsive_Video extends \WP_Widget {
 	 * @return string $bootstrap_class The specific class for this aspect ratio.
 	 */
 	public function get_class_for_aspect_ratio( $embed_code ) {
-		$bootstrap_apect_ratio = self::get_bootstrap_aspect_ratio( $embed_code );
-		return 'embed-responsive-' . $bootstrap_apect_ratio;
-	}
-
-	public function get_bootstrap_aspect_ratio( $embed_code ) {
+		$prefix = 'embed-responsive-';
 		$aspect_ratio = self::get_raw_aspect_ratio( $embed_code );
 		if ( self::is_ratio_closer_to_four_by_three( $aspect_ratio ) ) {
-			return '4by3';
+			return $prefix . '4by3';
 		} else {
-			return '16by9';
+			return $prefix . '16by9';
 		}
 	}
 
