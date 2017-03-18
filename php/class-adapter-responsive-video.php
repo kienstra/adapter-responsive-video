@@ -25,6 +25,12 @@ class Adapter_Responsive_Video extends \WP_Widget {
 		parent::__construct( 'adapter_responsive_video' , __( 'Adapter Video' , 'adapter-responsive-video' ) , $options );
 	}
 
+	/**
+	 * Output the widget form.
+	 *
+	 * @param array $instance Widget data.
+	 * @return void.
+	 */
 	public function form( $instance ) {
 		$video_url = isset( $instance['video_url'] ) ? $instance['video_url'] : '';
 		?>
@@ -37,6 +43,13 @@ class Adapter_Responsive_Video extends \WP_Widget {
 		<?php
 	}
 
+	/**
+	 * Update the widget instance, based on the form submission.
+	 *
+	 * @param array $new_instance New widget data, updated from form.
+	 * @param array $previous_instance Widget data, before being updated from form.
+	 * @return array $instance Widget data, updated based on form submission.
+	 */
 	public function update( $new_instance, $previous_instance ) {
 		$instance = $previous_instance;
 		$video_url = isset( $new_instance['video_url'] ) ? $new_instance['video_url'] : '';
@@ -49,15 +62,27 @@ class Adapter_Responsive_Video extends \WP_Widget {
 		return $instance;
 	}
 
+	/**
+	 * Echo the markup of the widget
+	 *
+	 * @param array $args Widget display data.
+	 * @param array $instance Data for widget.
+	 */
 	public function widget( $args, $instance ) {
 		$video_source = isset( $instance['video_source'] ) ? $instance['video_source'] : '';
 		$aspect_ratio_class = isset( $instance['aspect_ratio_class'] ) ? $instance['aspect_ratio_class'] : '';
 		if ( $video_source ) {
 			$bootstrap_responsive_video = $this->get_markup( $video_source , $aspect_ratio_class );
-			echo $args['before_widget'] . $bootstrap_responsive_video . $args['after_widget'];
+			echo wp_kses_post( $args['before_widget'] ) . $bootstrap_responsive_video . wp_kses_post( $args['after_widget'] );
 		}
 	}
 
+	/**
+	 * Get the iframe code, in order to later output it on the widget.
+	 *
+	 * @param string $url To use in order to get the iframe markup.
+	 * @return false|string
+	 */
 	public function get_raw_iframe_code( $url ) {
 		$raw_code = wp_oembed_get( esc_url( $url ) );
 		return $raw_code;

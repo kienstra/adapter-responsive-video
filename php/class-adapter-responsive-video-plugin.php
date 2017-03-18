@@ -4,6 +4,7 @@
  *
  * @package AdapterResponsiveVideo
  */
+
 namespace AdapterResponsiveVideo;
 
 /**

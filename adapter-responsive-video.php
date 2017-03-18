@@ -1,7 +1,10 @@
 <?php
 /**
+ * Plugin bootstrap file.
+ *
  * @package AdapterResponsiveVideo
  */
+
 namespace AdapterResponsiveVideo;
 
 /*
