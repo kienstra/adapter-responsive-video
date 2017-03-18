@@ -63,7 +63,7 @@ class Adapter_Responsive_Video extends \WP_Widget {
 	}
 
 	/**
-	 * Echo the markup of the widget
+	 * Echo the markup of the widget.
 	 *
 	 * @param array $args Widget display data.
 	 * @param array $instance Data for widget.
@@ -88,6 +88,14 @@ class Adapter_Responsive_Video extends \WP_Widget {
 		return $raw_code;
 	}
 
+	/**
+	 *
+	 * Get the full markup of a Bootstrap responsive video container
+	 *
+	 * @param string $src Value to output in src attribute.
+	 * @param string $class Value to output in class attribute.
+	 * @return string $video_container Full markup of a responsive video container.
+	 */
 	public function get_markup( $src, $class ) {
 		$max_width = apply_filters( 'arv_video_max_width' , '580' );
 		return '<div class="responsive-video-container" style="max-width:' . esc_attr( $max_width ) . 'px">
@@ -98,6 +106,13 @@ class Adapter_Responsive_Video extends \WP_Widget {
 				</div>';
 	}
 
+	/**
+	 * Get the value of a specific attribute in the iframe.
+	 *
+	 * @param string $iframe Markup of iframe.
+	 * @param string $attribute In the iframe, search for this attribute's value.
+	 * @return string $value Corresponds to the passed attribute.
+	 */
 	public function get_iframe_attribute( $iframe, $attribute ) {
 		$pattern	= '/<iframe.*?' . $attribute . '=\"([^\"]+?)\"/';
 		preg_match( $pattern , $iframe , $matches );
@@ -106,6 +121,12 @@ class Adapter_Responsive_Video extends \WP_Widget {
 		}
 	}
 
+	/**
+	 * Get the Bootstrap class, given a width-to-height aspect ratio.
+	 *
+	 * @param string $embed_code The code to be output in the Boostrap container.
+	 * @return string $bootstrap_class The specific class for this aspect ratio.
+	 */
 	public function get_class_for_aspect_ratio( $embed_code ) {
 		$bootstrap_apect_ratio = self::get_bootstrap_aspect_ratio( $embed_code );
 		return 'embed-responsive-' . $bootstrap_apect_ratio;
