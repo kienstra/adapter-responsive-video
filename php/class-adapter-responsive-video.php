@@ -67,6 +67,7 @@ class Adapter_Responsive_Video extends \WP_Widget {
 	 *
 	 * @param array $args Widget display data.
 	 * @param array $instance Data for widget.
+	 * @return void.
 	 */
 	public function widget( $args, $instance ) {
 		$video_source = isset( $instance['video_source'] ) ? $instance['video_source'] : '';

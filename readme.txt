@@ -48,4 +48,5 @@ Twitter Bootstrap 3.2, which was released in June 2014
 
 == Upgrade Notice ==
 
-* N/A, first version
+= 1.0.1 =
+Please upgrade for the security improvements, especially the safer widget output.
