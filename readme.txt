@@ -3,8 +3,8 @@ Contributors: ryankienstra
 Donate link: http://jdrf.org/get-involved/ways-to-donate/
 Tags: video, embed, responsive, mobile, post, Bootstrap
 Requires at least: 3.8
-Tested up to: 4.3.1
-Stable tag: 1.0.0
+Tested up to: 4.7.3
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,9 +40,13 @@ Twitter Bootstrap 3.2, which was released in June 2014
 
 == Changelog ==
 
+= 1.0.1 =
+* Security improvements, including securing widget output.
+
 = 1.0.0 =
 * First version
 
 == Upgrade Notice ==
 
-* N/A, first version
+= 1.0.1 =
+Please upgrade for the security improvements, especially the safer widget output.
