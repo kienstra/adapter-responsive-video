@@ -15,6 +15,13 @@ namespace AdapterResponsiveVideo;
 class Adapter_Responsive_Video_Plugin {
 
 	/**
+	 * Plugin slug.
+	 *
+	 * @var string
+	 */
+	public $plugin_slug = 'adapter-responsive-video';
+
+	/**
 	 * Construct the class.
 	 */
 	public function __construct() {
@@ -29,7 +36,7 @@ class Adapter_Responsive_Video_Plugin {
 	 * @return void.
 	 */
 	public function plugin_localization() {
-		load_plugin_textdomain( 'adapter-responsive-video' , false , basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( $this->plugin_slug, false, $this->plugin_slug . '/languages' );
 	}
 
 	/**
