@@ -17,7 +17,7 @@ Author URI: www.ryankienstra.com
 License: GPLv2
 */
 
-require_once dirname( __FILE__ ) . '/php/class-adapter-responsive-video-plugin.php';
+require_once dirname( __FILE__ ) . '/php/class-plugin.php';
 
-global $adapter_responsive_video_plugin;
-$adapter_responsive_video_plugin = new Adapter_Responsive_Video_Plugin();
+$plugin = Plugin::get_instance();
+$plugin->init();

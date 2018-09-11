@@ -12,12 +12,38 @@ namespace AdapterResponsiveVideo;
  *
  * @package AdapterResponsiveVideo
  */
-class Adapter_Responsive_Video_Plugin {
+class Plugin {
+
+	/**
+	 * The class of the widget.
+	 *
+	 * @var string
+	 */
+	const WIDGET_CLASS = 'Adapter_Responsive_Video';
+
+	/**
+	 * The instance of this class.
+	 *
+	 * @var Plugin
+	 */
+	public static $instance;
+
+	/**
+	 * Gets the instance of this plugin.
+	 *
+	 * @return Plugin $instance The plugin instance.
+	 */
+	public static function get_instance() {
+		if ( ! self::$instance instanceof Plugin ) {
+			self::$instance = new Plugin();
+		}
+		return self::$instance;
+	}
 
 	/**
 	 * Construct the class.
 	 */
-	public function __construct() {
+	public function init() {
 		require_once dirname( __FILE__ ) . '/class-adapter-responsive-video.php';
 		add_action( 'init' , array( $this, 'plugin_localization' ) );
 		add_action( 'widgets_init' , array( $this, 'register_widget' ) );
