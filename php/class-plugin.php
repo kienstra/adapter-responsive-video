@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Adapter_Responsive_Video_Plugin
+ * Class Plugin
  *
  * @package AdapterResponsiveVideo
  */
@@ -8,14 +8,14 @@
 namespace AdapterResponsiveVideo;
 
 /**
- * Class Adapter_Responsive_Video_Plugin
+ * Class Plugin
  *
  * @package AdapterResponsiveVideo
  */
 class Plugin {
 
 	/**
-	 * The class of the widget.
+	 * The class name of the widget.
 	 *
 	 * @var string
 	 */
@@ -66,5 +66,4 @@ class Plugin {
 	public function register_widget() {
 		register_widget( 'AdapterResponsiveVideo\Adapter_Responsive_Video' );
 	}
-
 }
