@@ -1,3 +1,6 @@
+# Ensure this uses PHP
+language: php
+
 sudo: false
 dist: precise
 
