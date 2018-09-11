@@ -45,8 +45,8 @@ class Plugin {
 	 */
 	public function init() {
 		require_once dirname( __FILE__ ) . '/class-adapter-responsive-video.php';
-		add_action( 'init' , array( $this, 'plugin_localization' ) );
-		add_action( 'widgets_init' , array( $this, 'register_widget' ) );
+		add_action( 'init', array( $this, 'plugin_localization' ) );
+		add_action( 'widgets_init', array( $this, 'register_widget' ) );
 	}
 
 	/**
@@ -55,7 +55,7 @@ class Plugin {
 	 * @return void.
 	 */
 	public function plugin_localization() {
-		load_plugin_textdomain( 'adapter-responsive-video' , false , basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'adapter-responsive-video', false, basename( dirname( __FILE__ ) ) . '/languages' );
 	}
 
 	/**
