@@ -129,7 +129,7 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 				if ( isset( $instance['iframe'] ) ) :
 					echo $instance['iframe']; // WPCS: XSS OK.
 				else :
-				?>
+					?>
 					<iframe class="embed-responsive-item" src="<?php echo esc_url( $video_source ); ?>"></iframe>
 				<?php endif; ?>
 			</div>
