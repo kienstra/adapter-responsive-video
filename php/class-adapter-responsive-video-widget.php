@@ -36,7 +36,7 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 	const DEFAULT_MAX_WIDTH = 580;
 
 	/**
-	 * Instantiate the widget class.
+	 * Instantiates the widget class.
 	 */
 	public function __construct() {
 		parent::__construct(
@@ -45,16 +45,16 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 			array(
 				'classname'                   => self::CLASS_NAME,
 				'customize_selective_refresh' => true,
-				'description'                 => __( 'Video from YouTube, Vimeo, and more.', 'adapter-responsive-video' ),
+				'description'                 => __( 'Videos and embeds from YouTube, SlideShare, Spotify, and more.', 'adapter-responsive-video' ),
 			)
 		);
 	}
 
 	/**
-	 * Output the widget form.
+	 * Outputs the widget form.
 	 *
 	 * @param array $instance Widget data.
-	 * @return void.
+	 * @return void
 	 */
 	public function form( $instance ) {
 		$video_url = isset( $instance['video_url'] ) ? $instance['video_url'] : '';
@@ -63,17 +63,17 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'video_url' ) ); ?>">
 					<?php esc_html_e( 'Video URL', 'adapter-responsive-video' ); ?>
 				</label>
-				<input type="text" value="<?php echo esc_url( $video_url ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'video_url' ) ); ?>" class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'video_url' ) ); ?>" placeholder="<?php esc_html_e( 'e.g. www.youtube.com/watch?v=mOXRZ0eYSA0', 'adapter-responsive-video' ); ?>" \>
+				<input type="text" value="<?php echo esc_url( $video_url ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'video_url' ) ); ?>" class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'video_url' ) ); ?>" placeholder="<?php esc_html_e( 'e.g. https://open.spotify.com/track/2XULDEvijLgHttFgLzzpM5', 'adapter-responsive-video' ); ?>" \>
 			</p>
 		<?php
 	}
 
 	/**
-	 * Update the widget instance, based on the form submission.
+	 * Updates the widget instance, based on the form submission.
 	 *
-	 * @param array $new_instance      New widget data, updated from form.
-	 * @param array $previous_instance Widget data, before being updated from form.
-	 * @return array $instance Widget data, updated based on form submission.
+	 * @param array $new_instance      New widget data.
+	 * @param array $previous_instance Widget data before the form was updated.
+	 * @return array $instance Sanitized widget data, updated based on form submission.
 	 */
 	public function update( $new_instance, $previous_instance ) {
 		$instance  = $previous_instance;
@@ -93,19 +93,18 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 	}
 
 	/**
-	 * Echo the markup of the widget.
+	 * Echoes the markup of the widget.
 	 *
 	 * @param array $args Widget display data.
 	 * @param array $instance Data for widget.
-	 * @return void.
+	 * @return void
 	 */
 	public function widget( $args, $instance ) {
 		echo $args['before_widget'] . $this->get_markup( $instance ) . $args['after_widget']; // WPCS: XSS OK.
 	}
 
 	/**
-	 *
-	 * Get the full markup of a Bootstrap responsive video container
+	 * Gets the full markup of a Bootstrap responsive embed container.
 	 *
 	 * @param array $instance The widget instance.
 	 * @return string $video_container Full markup of a responsive video container.
@@ -117,7 +116,7 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 		/**
 		 * The max-with of the div.responsive-video-container.
 		 *
-		 * @param int $max_width The default max width.
+		 * @param int $max_width The max width of the container.
 		 */
 		$max_width = apply_filters( 'arv_video_max_width', self::DEFAULT_MAX_WIDTH );
 
@@ -141,10 +140,17 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 	}
 
 	/**
-	 * Gets the aspect ratio class, like embed-responsive-16by9.
+	 * Gets the <iframe> aspect ratio class and src.
 	 *
-	 * @param string $embed_markup The embed markup.
-	 * @return string|null Aspect ratio class for the ratio of width to height, or null.
+	 * The aspect ratio class is based on whether its ratio is closer to 4/3 or 16/9.
+	 * It will either be 'embed-responsive-16by9', 'embed-responsive-4by3', or null.
+	 * The 'src' is simply the src of the <iframe>, or null if it does not exist.
+	 *
+	 * @param string $embed_markup The embed markup to search for these attributes.
+	 * @return array[] {
+	 *     @type string|null $class The aspect ratio class, like 'embed-responsive-16by9'.
+	 *     @type string|null $src   The src of the <iframe>.
+	 * }
 	 */
 	public function get_iframe_attributes( $embed_markup ) {
 		$libxml_previous_state = libxml_use_internal_errors( true );

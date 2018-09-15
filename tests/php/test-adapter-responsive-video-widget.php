@@ -60,7 +60,7 @@ class Test_Adapter_Responsive_Video_Widget extends \WP_UnitTestCase {
 			array(
 				'classname'                   => Adapter_Responsive_Video_Widget::CLASS_NAME,
 				'customize_selective_refresh' => true,
-				'description'                 => 'Video from YouTube, Vimeo, and more.',
+				'description'                 => 'Videos and embeds from YouTube, SlideShare, Spotify, and more.',
 			),
 			$this->widget->widget_options
 		);
