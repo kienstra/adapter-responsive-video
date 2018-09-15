@@ -79,14 +79,14 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 		$instance  = $previous_instance;
 		$video_url = isset( $new_instance['video_url'] ) ? esc_url( $new_instance['video_url'] ) : '';
 		if ( $video_url ) {
+			$instance['video_url']          = esc_url( $video_url );
 			$raw_embed_markup               = wp_oembed_get( $video_url );
-			$aspect_ratio_class             = $this->get_aspect_ratio_class( $raw_embed_markup );
-			$instance['video_source']       = $video_url;
-			$instance['aspect_ratio_class'] = $aspect_ratio_class;
+			$iframe_attributes              = $this->get_iframe_attributes( $raw_embed_markup );
+			$instance['video_source']       = $iframe_attributes['src'];
+			$instance['aspect_ratio_class'] = $iframe_attributes['class'];
 			if ( preg_match( '/^<iframe/', $raw_embed_markup ) ) {
 				$instance['iframe'] = str_replace( '<iframe', '<iframe class="embed-responsive-item"', $raw_embed_markup );
 			}
-			$instance['video_url'] = esc_url( $video_url );
 		}
 
 		return $instance;
@@ -129,6 +129,7 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 				if ( isset( $instance['iframe'] ) ) :
 					echo $instance['iframe']; // WPCS: XSS OK.
 				else :
+					// For backwards compatibility with v1.0.1.
 					?>
 					<iframe class="embed-responsive-item" src="<?php echo esc_url( $video_source ); ?>"></iframe>
 				<?php endif; ?>
@@ -143,9 +144,9 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 	 * Gets the aspect ratio class, like embed-responsive-16by9.
 	 *
 	 * @param string $embed_markup The embed markup.
-	 * @return string|null $value Corresponds to the passed attribute.
+	 * @return string|null Aspect ratio class for the ratio of width to height, or null.
 	 */
-	public function get_aspect_ratio_class( $embed_markup ) {
+	public function get_iframe_attributes( $embed_markup ) {
 		$libxml_previous_state = libxml_use_internal_errors( true );
 		$dom                   = new \DOMDocument( '1.0' );
 		$dom->loadHTML( $embed_markup );
@@ -154,17 +155,22 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 		if ( $iframe ) {
 			$width  = $iframe->getAttribute( 'width' );
 			$height = $iframe->getAttribute( 'height' );
+			$src    = $iframe->getAttribute( 'src' );
+		} else {
+			$src = null;
 		}
 
 		libxml_clear_errors();
 		libxml_use_internal_errors( $libxml_previous_state );
 
-		if ( isset( $width, $height ) ) {
-			$ratio        = $width / $height;
-			$ratio_string = ( abs( $ratio - 1.3333 ) < abs( $ratio - 1.777 ) ) ? '4by3' : '16by9';
-			return 'embed-responsive-' . $ratio_string;
+		if ( ! empty( $width ) && ! empty( $height ) && is_numeric( $width ) && is_numeric( $height ) ) {
+			$ratio        = intval( $width ) / intval( $height );
+			$ratio_string = abs( $ratio - 1.3333 ) < abs( $ratio - 1.7777 ) ? '4by3' : '16by9';
+			$class        = 'embed-responsive-' . $ratio_string;
+		} else {
+			$class = null;
 		}
 
-		return null;
+		return compact( 'class', 'src' );
 	}
 }

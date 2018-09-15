@@ -34,6 +34,13 @@ class Test_Adapter_Responsive_Video_Widget extends \WP_UnitTestCase {
 	const EXPECTED_ASPECT_RATIO_CLASS = 'embed-responsive-16by9';
 
 	/**
+	 * The expected embed <iframe> src value, returned from wp_oembed_get().
+	 *
+	 * @var string
+	 */
+	const EXPECTED_EMBED_IFRAME_SRC = 'https://www.youtube.com/embed/XOY3ZUO6P0k?feature=oembed';
+
+	/**
 	 * Setup.
 	 *
 	 * @inheritdoc
@@ -86,7 +93,7 @@ class Test_Adapter_Responsive_Video_Widget extends \WP_UnitTestCase {
 	 * @covers Adapter_Responsive_Video_Widget::update()
 	 */
 	public function test_update() {
-		// If there is no 'video_url' in the instance, the instance should not be updated.
+		// If only a wrong key is in the $new_instance, the instance should not be updated.
 		$invalid_value = 'Foo';
 		$new_instance  = $this->widget->update(
 			array(
@@ -104,12 +111,13 @@ class Test_Adapter_Responsive_Video_Widget extends \WP_UnitTestCase {
 			array()
 		);
 
+		// The $new_instance should have all of the values in the $expected_instance, and it should have an 'iframe' value that begins with <iframe.
 		$expected_instance = array(
 			'aspect_ratio_class' => self::EXPECTED_ASPECT_RATIO_CLASS,
 			'video_url'          => self::MOCK_VIDEO_URL,
 		);
-
 		$this->assertEmpty( array_diff( $expected_instance, $new_instance ) );
+		$this->assertContains( '<iframe class="embed-responsive-item"', $new_instance['iframe'] );
 	}
 
 	/**
@@ -155,5 +163,37 @@ class Test_Adapter_Responsive_Video_Widget extends \WP_UnitTestCase {
 		$this->assertContains( self::EXPECTED_ASPECT_RATIO_CLASS, $markup );
 		$this->assertContains( strval( Adapter_Responsive_Video_Widget::DEFAULT_MAX_WIDTH ), $markup );
 		$this->assertContains( '<iframe class="embed-responsive-item"', $markup );
+	}
+
+	/**
+	 * Test get_iframe_attributes.
+	 *
+	 * @covers Adapter_Responsive_Video_Widget::get_iframe_attributes()
+	 */
+	public function test_get_iframe_attributes() {
+		$mock_iframe         = wp_oembed_get( self::MOCK_VIDEO_URL );
+		$expected_attributes = array(
+			'class' => self::EXPECTED_ASPECT_RATIO_CLASS,
+			'src'   => self::EXPECTED_EMBED_IFRAME_SRC,
+		);
+		$this->assertEquals(
+			$expected_attributes,
+			$this->widget->get_iframe_attributes( $mock_iframe )
+		);
+
+		// If an <iframe> is nested in an element, this should still get its attributes.
+		$this->assertEquals(
+			$expected_attributes,
+			$this->widget->get_iframe_attributes( sprintf( '<div class="foobar">%s</div>', $mock_iframe ) )
+		);
+
+		// If embed markup is passed that does not have an <iframe>, both values should be null.
+		$this->assertEquals(
+			array(
+				'class' => null,
+				'src'   => null,
+			),
+			$this->widget->get_iframe_attributes( '<div class="foobar"></div>' )
+		);
 	}
 }
