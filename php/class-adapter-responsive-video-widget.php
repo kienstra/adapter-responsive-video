@@ -29,6 +29,13 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 	const CLASS_NAME = 'adapter-responsive-video';
 
 	/**
+	 * The key for the video URL, as entered in the form.
+	 *
+	 * @var string
+	 */
+	const VIDEO_URL_KEY = 'video_url';
+
+	/**
 	 * The default max width of the div.responsive-video-container.
 	 *
 	 * @var int
@@ -57,13 +64,13 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 	 * @return void
 	 */
 	public function form( $instance ) {
-		$video_url = isset( $instance['video_url'] ) ? $instance['video_url'] : '';
+		$video_url = isset( $instance[ self::VIDEO_URL_KEY ] ) ? $instance[ self::VIDEO_URL_KEY ] : '';
 		?>
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'video_url' ) ); ?>">
+				<label for="<?php echo esc_attr( $this->get_field_id( self::VIDEO_URL_KEY ) ); ?>">
 					<?php esc_html_e( 'Video URL', 'adapter-responsive-video' ); ?>
 				</label>
-				<input type="text" value="<?php echo esc_url( $video_url ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'video_url' ) ); ?>" class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'video_url' ) ); ?>" placeholder="<?php esc_html_e( 'e.g. https://open.spotify.com/track/2XULDEvijLgHttFgLzzpM5', 'adapter-responsive-video' ); ?>" \>
+				<input type="text" value="<?php echo esc_url( $video_url ); ?>" id="<?php echo esc_attr( $this->get_field_id( self::VIDEO_URL_KEY ) ); ?>" class="widefat" name="<?php echo esc_attr( $this->get_field_name( self::VIDEO_URL_KEY ) ); ?>" placeholder="<?php esc_html_e( 'e.g. https://open.spotify.com/track/2XULDEvijLgHttFgLzzpM5', 'adapter-responsive-video' ); ?>" \>
 			</p>
 		<?php
 	}
@@ -77,10 +84,10 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 	 */
 	public function update( $new_instance, $previous_instance ) {
 		$instance  = $previous_instance;
-		$video_url = isset( $new_instance['video_url'] ) ? esc_url( $new_instance['video_url'] ) : '';
+		$video_url = isset( $new_instance[ self::VIDEO_URL_KEY ] ) ? esc_url( $new_instance[ self::VIDEO_URL_KEY ] ) : '';
 		if ( $video_url ) {
-			$instance['video_url'] = esc_url( $video_url );
-			$raw_embed_markup      = wp_oembed_get( $video_url );
+			$instance[ self::VIDEO_URL_KEY ] = esc_url( $video_url );
+			$raw_embed_markup                = wp_oembed_get( $video_url );
 
 			// If there is no embed markup for this, return without updating the other instance values, as there is no way to get them.
 			if ( empty( $raw_embed_markup ) ) {

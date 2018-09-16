@@ -81,7 +81,7 @@ class Test_Adapter_Responsive_Video_Widget extends \WP_UnitTestCase {
 
 		// If there is a 'video_url' in the argument, it should be output in the form.
 		ob_start();
-		$this->widget->form( array( 'video_url' => self::MOCK_VIDEO_URL ) );
+		$this->widget->form( array( Adapter_Responsive_Video_Widget::VIDEO_URL_KEY => self::MOCK_VIDEO_URL ) );
 		$output = ob_get_clean();
 		$this->assertContains( '<input type="text" value="' . self::MOCK_VIDEO_URL, $output );
 		$this->assertContains( 'Video URL', $output );
@@ -106,22 +106,22 @@ class Test_Adapter_Responsive_Video_Widget extends \WP_UnitTestCase {
 		// There is a 'video_url' in the instance, so it should be updated.
 		$new_instance = $this->widget->update(
 			array(
-				'video_url' => self::MOCK_VIDEO_URL,
+				Adapter_Responsive_Video_Widget::VIDEO_URL_KEY => self::MOCK_VIDEO_URL,
 			),
 			array()
 		);
 
 		// The $new_instance should have all of the values in the $expected_instance, and it should have an 'iframe' value that begins with <iframe.
 		$expected_instance = array(
-			'aspect_ratio_class' => self::EXPECTED_ASPECT_RATIO_CLASS,
-			'video_url'          => self::MOCK_VIDEO_URL,
+			'aspect_ratio_class'                           => self::EXPECTED_ASPECT_RATIO_CLASS,
+			Adapter_Responsive_Video_Widget::VIDEO_URL_KEY => self::MOCK_VIDEO_URL,
 		);
 		$this->assertEmpty( array_diff( $expected_instance, $new_instance ) );
 		$this->assertContains( '<iframe class="embed-responsive-item"', $new_instance['iframe'] );
 
 		// When entering a video url that is not a valid embed URL, there shouldn't be values for 'iframe', 'aspect_ratio_class', or 'video_source'.
 		$non_embed_video_url = 'https://example.com';
-		$inital_instance     = array( 'video_url' => $non_embed_video_url );
+		$inital_instance     = array( Adapter_Responsive_Video_Widget::VIDEO_URL_KEY => $non_embed_video_url );
 
 		$new_instance = $this->widget->update( $inital_instance, array() );
 		$this->assertEquals( $inital_instance, $new_instance );
