@@ -179,6 +179,10 @@ class Test_Adapter_Responsive_Video_Widget extends \WP_UnitTestCase {
 		$output               = $this->widget->get_markup( $instance_with_iframe );
 		$this->assertContains( $mock_iframe, $output );
 		$this->assertContains( self::EXPECTED_ASPECT_RATIO_CLASS, $markup );
+
+		// If there is no 'video_src' or 'iframe' value, this should not return any markup.
+		$instance_without_required_values = array( 'aspect_ratio_class' => self::EXPECTED_ASPECT_RATIO_CLASS );
+		$this->assertEmpty( $this->widget->get_markup( $instance_without_required_values ) );
 	}
 
 	/**

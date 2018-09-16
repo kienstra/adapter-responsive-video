@@ -100,8 +100,8 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 	/**
 	 * Echoes the markup of the widget.
 	 *
-	 * @param array $args Widget display data.
-	 * @param array $instance Data for widget.
+	 * @param array $args Display data.
+	 * @param array $instance Data for this widget instance.
 	 * @return void
 	 */
 	public function widget( $args, $instance ) {
@@ -111,12 +111,17 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 	/**
 	 * Gets the full markup of a Bootstrap responsive embed container.
 	 *
+	 * @see https://getbootstrap.com/docs/4.1/utilities/embed/
 	 * @param array $instance The widget instance.
 	 * @return string $video_container Full markup of a responsive video container.
 	 */
 	public function get_markup( $instance ) {
 		$video_source       = isset( $instance['video_source'] ) ? $instance['video_source'] : '';
 		$aspect_ratio_class = isset( $instance['aspect_ratio_class'] ) ? $instance['aspect_ratio_class'] : '';
+
+		if ( ! $video_source && empty( $instance['iframe'] ) ) {
+			return;
+		}
 
 		/**
 		 * The max-with of the div.responsive-video-container.
