@@ -19,7 +19,7 @@ A widget for videos and embeds from [YouTube](https://youtube.com), [SlideShare]
 * This responsive widget resizes with its container
 * With the [Video widget](https://make.wordpress.org/core/2017/05/26/media-widgets-for-images-video-and-audio/) in WordPress 4.8 and later, this widget is less necessary for videos
 * Though this widget still works with videos, the [Video widget](https://make.wordpress.org/core/2017/05/26/media-widgets-for-images-video-and-audio/) displays well in many [Bootstrap](https://getbootstrap.com/) themes
-* But this widget now supports embeds like [SlideShare](https://www.slideshare.net), [Speaker Deck](https://speakerdeck.com), [Spotify](https://spotify.com), and [SoundCloud](https://soundcloud.com)
+* But this widget also supports embeds like [SlideShare](https://www.slideshare.net), [Speaker Deck](https://speakerdeck.com), [Spotify](https://spotify.com), and [SoundCloud](https://soundcloud.com)
 
 [![Play video on YouTube](https://i1.ytimg.com/vi/6FfXmebV1sI/hqdefault.jpg)](https://www.youtube.com/watch?v=6FfXmebV1sI)
 
@@ -42,7 +42,7 @@ A widget for videos and embeds from [YouTube](https://youtube.com), [SlideShare]
 ## Changelog ##
 
 ### 1.1 ###
-- Support non-video embeds in the widget, after refactoring and addding tests. See [#9](https://github.com/kienstra/adapter-responsive-video/pull/9).
+- Improve support for non-video embeds by rendering the entire `<iframe>`. See [#9](https://github.com/kienstra/adapter-responsive-video/pull/9).
 - Refactor the main plugin file and add PHPUnit tests. See [#7](https://github.com/kienstra/adapter-responsive-video/pull/7).
 - Set up wp-dev-lib with configuration files. See [#3](https://github.com/kienstra/adapter-responsive-video/pull/3).
 - Add PHPUnit tests, for 100% coverage of methods and functions. See [#2](https://github.com/kienstra/adapter-post-preview/issues/2).
