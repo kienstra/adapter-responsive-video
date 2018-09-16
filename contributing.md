@@ -1,4 +1,4 @@
-#  Contributing To Adapter Post Preview
+#  Contributing To Adapter Responsive Video
 
 To clone the repository:
 ``` bash
