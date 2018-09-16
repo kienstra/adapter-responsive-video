@@ -118,6 +118,13 @@ class Test_Adapter_Responsive_Video_Widget extends \WP_UnitTestCase {
 		);
 		$this->assertEmpty( array_diff( $expected_instance, $new_instance ) );
 		$this->assertContains( '<iframe class="embed-responsive-item"', $new_instance['iframe'] );
+
+		// When entering a video url that is not a valid embed URL, there shouldn't be values for 'iframe', 'aspect_ratio_class', or 'video_source'.
+		$non_embed_video_url = 'https://example.com';
+		$inital_instance     = array( 'video_url' => $non_embed_video_url );
+
+		$new_instance = $this->widget->update( $inital_instance, array() );
+		$this->assertEquals( $inital_instance, $new_instance );
 	}
 
 	/**

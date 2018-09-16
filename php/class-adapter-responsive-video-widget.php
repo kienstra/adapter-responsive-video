@@ -79,14 +79,19 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 		$instance  = $previous_instance;
 		$video_url = isset( $new_instance['video_url'] ) ? esc_url( $new_instance['video_url'] ) : '';
 		if ( $video_url ) {
-			$instance['video_url']          = esc_url( $video_url );
-			$raw_embed_markup               = wp_oembed_get( $video_url );
+			$instance['video_url'] = esc_url( $video_url );
+			$raw_embed_markup      = wp_oembed_get( $video_url );
+
+			// If there is no embed markup for this, return without updating the other instance values, as there is no way to get them.
+			if ( empty( $raw_embed_markup ) ) {
+				return $instance;
+			}
+
 			$iframe_attributes              = $this->get_iframe_attributes( $raw_embed_markup );
 			$instance['video_source']       = $iframe_attributes['src'];
 			$instance['aspect_ratio_class'] = $iframe_attributes['class'];
-			if ( preg_match( '/^<iframe/', $raw_embed_markup ) ) {
-				$instance['iframe'] = str_replace( '<iframe', '<iframe class="embed-responsive-item"', $raw_embed_markup );
-			}
+			$has_iframe                     = preg_match( '/^<iframe/', $raw_embed_markup );
+			$instance['iframe']             = $has_iframe ? str_replace( '<iframe', '<iframe class="embed-responsive-item"', $raw_embed_markup ) : null;
 		}
 
 		return $instance;
