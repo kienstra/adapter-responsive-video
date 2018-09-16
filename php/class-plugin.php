@@ -19,7 +19,7 @@ class Plugin {
 	 *
 	 * @var string
 	 */
-	const WIDGET_CLASS = 'Adapter_Responsive_Video';
+	const WIDGET_CLASS = 'Adapter_Responsive_Video_Widget';
 
 	/**
 	 * The instance of this class.
@@ -44,7 +44,7 @@ class Plugin {
 	 * Construct the class.
 	 */
 	public function init() {
-		require_once dirname( __FILE__ ) . '/class-adapter-responsive-video.php';
+		require_once dirname( __FILE__ ) . '/class-adapter-responsive-video-widget.php';
 		add_action( 'init', array( $this, 'plugin_localization' ) );
 		add_action( 'widgets_init', array( $this, 'register_widget' ) );
 	}
@@ -64,6 +64,6 @@ class Plugin {
 	 * @return void.
 	 */
 	public function register_widget() {
-		register_widget( 'AdapterResponsiveVideo\Adapter_Responsive_Video' );
+		register_widget( __NAMESPACE__ . '\\' . self::WIDGET_CLASS );
 	}
 }
