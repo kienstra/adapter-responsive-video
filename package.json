@@ -1,6 +1,5 @@
 {
   "name": "adapter-responsive-video",
-  "version": "1.0.1",
   "description": "A widget for video from YouTube, Vimeo, and more. Resizes to its container. Easy: just enter the video url.",
   "main": "index.js",
   "scripts": {
