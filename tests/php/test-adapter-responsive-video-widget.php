@@ -159,17 +159,26 @@ class Test_Adapter_Responsive_Video_Widget extends \WP_UnitTestCase {
 	 * @covers Adapter_Responsive_Video_Widget::get_markup()
 	 */
 	public function test_get_markup() {
-		$markup = $this->widget->get_markup(
-			array(
-				'video_source'       => self::MOCK_VIDEO_URL,
-				'aspect_ratio_class' => self::EXPECTED_ASPECT_RATIO_CLASS,
-			)
+		$initial_instance = array(
+			'video_source'       => self::MOCK_VIDEO_URL,
+			'aspect_ratio_class' => self::EXPECTED_ASPECT_RATIO_CLASS,
 		);
+		$markup           = $this->widget->get_markup( $initial_instance );
 
 		$this->assertContains( self::MOCK_VIDEO_URL, $markup );
 		$this->assertContains( self::EXPECTED_ASPECT_RATIO_CLASS, $markup );
 		$this->assertContains( strval( Adapter_Responsive_Video_Widget::DEFAULT_MAX_WIDTH ), $markup );
 		$this->assertContains( '<iframe class="embed-responsive-item"', $markup );
+
+		// If the 'iframe' value is present in the instance, it should include it in the returned markup.
+		$mock_iframe          = '<iframe src="https://example.com/baz-embed"></iframe>';
+		$instance_with_iframe = array_merge(
+			$initial_instance,
+			array( 'iframe' => $mock_iframe )
+		);
+		$output               = $this->widget->get_markup( $instance_with_iframe );
+		$this->assertContains( $mock_iframe, $output );
+		$this->assertContains( self::EXPECTED_ASPECT_RATIO_CLASS, $markup );
 	}
 
 	/**
