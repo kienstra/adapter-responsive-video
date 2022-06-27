@@ -1,5 +1,5 @@
 <phpunit
-	bootstrap="phpunit-plugin-bootstrap.php"
+	bootstrap="tets/bootstrap.php"
 	backupGlobals="false"
 	colors="true"
 	convertErrorsToExceptions="true"
