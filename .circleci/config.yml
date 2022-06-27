@@ -9,6 +9,5 @@ workflows:
       - approval-for-deploy-tested-up-to-bump:
           type: approval
       - wp-svn/deploy-tested-up-to-bump:
-          dry-run: true
           requires:
             - approval-for-deploy-tested-up-to-bump
