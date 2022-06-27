@@ -1,0 +1,16 @@
+.git
+.gitignore
+.gitattributes
+.svnignore
+tests
+node_modules
+vendor
+.circleci
+package.json
+package-lock.json
+composer.json
+composer.lock
+phpcs.xml
+phpunit.xml
+readme.md
+contributing.md

@@ -3,15 +3,15 @@
 
 A widget for videos and embeds from [YouTube](https://youtube.com), [SlideShare](https://www.slideshare.net), [Spotify](https://spotify.com), and more. Resizes to its container.
 
-**Contributors:** [ryankienstra](https://profiles.wordpress.org/ryankienstra)  
-**Tags:** [video](https://wordpress.org/plugins/tags/video), [embed](https://wordpress.org/plugins/tags/embed), [responsive](https://wordpress.org/plugins/tags/responsive), [mobile](https://wordpress.org/plugins/tags/mobile), [post](https://wordpress.org/plugins/tags/post), [Bootstrap](https://wordpress.org/plugins/tags/Bootstrap)  
-**Requires at least:** 3.8  
-**Tested up to:** 4.9  
-**Stable tag:** 1.1  
-**License:** [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)  
-**Donate link:** https://www.jdrf.org/donate/  
+**Contributors:** [ryankienstra](https://profiles.wordpress.org/ryankienstra)
+**Tags:** [video](https://wordpress.org/plugins/tags/video), [embed](https://wordpress.org/plugins/tags/embed), [responsive](https://wordpress.org/plugins/tags/responsive), [mobile](https://wordpress.org/plugins/tags/mobile), [post](https://wordpress.org/plugins/tags/post), [Bootstrap](https://wordpress.org/plugins/tags/Bootstrap)
+**Requires at least:** 3.8
+**Tested up to:** 4.9
+**Stable tag:** 1.1
+**License:** [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
+**Donate link:** https://www.jdrf.org/donate/
 
-[![Build Status](https://travis-ci.org/kienstra/adapter-responsive-video.svg?branch=master)](https://travis-ci.org/kienstra/adapter-responsive-video) 
+[![Build Status](https://travis-ci.org/kienstra/adapter-responsive-video.svg?branch=master)](https://travis-ci.org/kienstra/adapter-responsive-video)
 
 ## Description ##
 
@@ -41,6 +41,9 @@ A widget for videos and embeds from [YouTube](https://youtube.com), [SlideShare]
 
 ## Changelog ##
 
+### 1.1.1 ###
+- Automated deployment to wp.org SVN.
+
 ### 1.1 ###
 - Improve support for non-video embeds by rendering the entire `<iframe>`. See [#9](https://github.com/kienstra/adapter-responsive-video/pull/9).
 - Refactor the main plugin file and add PHPUnit tests. See [#7](https://github.com/kienstra/adapter-responsive-video/pull/7).
@@ -53,10 +56,7 @@ A widget for videos and embeds from [YouTube](https://youtube.com), [SlideShare]
 ### 1.0.0 ###
 - First version
 
-
 ## Upgrade Notice ##
 
 ### 1.0.1 ###
 Please upgrade for the security improvements, especially the safer widget output.
-
-

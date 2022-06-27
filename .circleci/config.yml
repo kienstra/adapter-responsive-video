@@ -1,0 +1,19 @@
+version: 2.1
+
+orbs:
+  wp-svn: studiopress/wp-svn@dev:alpha
+
+workflows:
+  deploy:
+    jobs:
+      - approval-for-deploy-tested-up-to-bump:
+          type: approval
+          filters:
+            tags:
+              ignore: /.*/
+            branches:
+              only: /^bump-tested-up-to.*/
+      - wp-svn/deploy-tested-up-to-bump:
+          dry-run: true
+          requires:
+            - approval-for-deploy-tested-up-to-bump
