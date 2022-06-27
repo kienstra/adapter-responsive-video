@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/kienstra/adapter-responsive-video/issues"
   },
-  "homepage": "https://github.com/kienstra/adapter-responsive-video#readme",
+  "homepage": "https://github.com/kienstra/adapter-responsive-video",
   "devDependencies": {
     "eslint": "^5.5.0",
     "grunt-cli": "^1.3.1",
