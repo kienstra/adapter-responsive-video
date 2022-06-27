@@ -2,9 +2,6 @@
   "name": "adapter-responsive-video",
   "description": "A widget for video from YouTube, Vimeo, and more. Resizes to its container. Easy: just enter the video url.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kienstra/adapter-responsive-video.git"
