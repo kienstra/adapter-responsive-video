@@ -6,8 +6,5 @@ orbs:
 workflows:
   deploy:
     jobs:
-      - approval-for-deploy-tested-up-to-bump:
-          type: approval
-      - wp-svn/deploy-tested-up-to-bump:
-          requires:
-            - approval-for-deploy-tested-up-to-bump
+      - wp-svn/deploy:
+          dry-run: true
