@@ -13,8 +13,8 @@
         "php": ">=5.2"
     },
     "require-dev": {
-        "wp-coding-standards/wpcs": "*",
-        "phpcompatibility/phpcompatibility-wp": "*",
+        "wp-coding-standards/wpcs": "^2.2",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7"
     },
     "config": {
