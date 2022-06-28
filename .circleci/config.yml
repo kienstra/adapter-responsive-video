@@ -8,6 +8,11 @@ workflows:
     jobs:
       - wp-svn/deploy:
           dry-run: true
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+            branches:
+              ignore: /.*/
       - approval-for-deploy-tested-up-to-bump:
           type: approval
           filters:
