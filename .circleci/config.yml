@@ -14,6 +14,6 @@ workflows:
             branches:
               only: /^bump-tested-up-to.*/
       - wp-svn/deploy-tested-up-to-bump:
-          dry-run: true
+          context: kienstra-svn
           requires:
             - approval-for-deploy-tested-up-to-bump
