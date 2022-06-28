@@ -7,7 +7,7 @@ workflows:
   deploy:
     jobs:
       - wp-svn/deploy:
-          dry-run: true
+          context: kienstra-svn
           filters:
             tags:
               only: /^\d+\.\d+\.\d+$/
