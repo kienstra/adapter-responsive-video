@@ -11,7 +11,7 @@ A widget for videos and embeds from [YouTube](https://youtube.com), [SlideShare]
 **License:** [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
 **Donate link:** https://www.jdrf.org/donate/
 
-[![Build Status](https://travis-ci.org/kienstra/adapter-responsive-video.svg?branch=master)](https://travis-ci.org/kienstra/adapter-responsive-video)
+[![Build Status](https://circleci.com/gh/kienstra/adapter-responsive-video.svg?style=svg)](https://circleci.com/gh/kienstra/adapter-responsive-video)
 
 ## Description ##
 
