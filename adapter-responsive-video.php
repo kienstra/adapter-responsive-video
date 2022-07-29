@@ -19,5 +19,4 @@ License: GPLv2
 
 require_once dirname( __FILE__ ) . '/php/class-plugin.php';
 
-$plugin = Plugin::get_instance();
-$plugin->init();
+( Plugin::get_instance() )->init();
