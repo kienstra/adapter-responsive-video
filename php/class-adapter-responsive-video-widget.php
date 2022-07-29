@@ -112,7 +112,7 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 	 * @return void
 	 */
 	public function widget( $args, $instance ) {
-		echo $args['before_widget'] . $this->get_markup( $instance ) . $args['after_widget']; // phpcs: ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $args['before_widget'] . $this->get_markup( $instance ) . $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -143,7 +143,7 @@ class Adapter_Responsive_Video_Widget extends \WP_Widget {
 			<div class="embed-responsive <?php echo esc_attr( $aspect_ratio_class ); ?>">
 				<?php
 				if ( isset( $instance['iframe'] ) ) :
-					echo $instance['iframe']; // phpcs: ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo $instance['iframe']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				else :
 					// For backwards compatibility with v1.0.1.
 					?>
