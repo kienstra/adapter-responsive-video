@@ -67,7 +67,7 @@ unset( $_plugin_dir, $_plugin_file_candidate, $_plugin_file_src );
  * @filter site_option_active_sitewide_plugins
  * @filter option_active_plugins The active plugins.
  *
- * @param array $active_plugins
+ * @param array $active_plugins The current active plugins.
  * @return array
  */
 function xwp_filter_active_plugins_for_phpunit( $active_plugins ) {
