@@ -40,6 +40,9 @@ A widget for videos and embeds from [YouTube](https://youtube.com), [SlideShare]
 
 == Changelog ==
 
+= 1.1.1 =
+- Automated deployment to wp.org SVN.
+
 = 1.1 =
 - Improve support for non-video embeds by rendering the entire `<iframe>`. See [#9](https://github.com/kienstra/adapter-responsive-video/pull/9).
 - Refactor the main plugin file and add PHPUnit tests. See [#7](https://github.com/kienstra/adapter-responsive-video/pull/7).
