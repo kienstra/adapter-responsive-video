@@ -7,7 +7,7 @@ A widget for videos and embeds from [YouTube](https://youtube.com), [SlideShare]
 **Tags:** [video](https://wordpress.org/plugins/tags/video), [embed](https://wordpress.org/plugins/tags/embed), [responsive](https://wordpress.org/plugins/tags/responsive), [mobile](https://wordpress.org/plugins/tags/mobile), [post](https://wordpress.org/plugins/tags/post), [Bootstrap](https://wordpress.org/plugins/tags/Bootstrap)
 **Requires at least:** 3.8
 **Tested up to:** 4.9
-**Stable tag:** 1.1
+**Stable tag:** 1.1.1
 **License:** [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
 **Donate link:** https://www.jdrf.org/donate/
 
