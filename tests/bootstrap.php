@@ -1,8 +1,6 @@
 <?php
 /**
- * File copied from wp-dev-lib.
- *
- * https://github.com/xwp/wp-dev-lib/blob/32430f45c03ce40b3755f7c2c0b03c8857154d59/phpunit-plugin-bootstrap.php
+ * File copied from wp-dev-lib: https://github.com/xwp/wp-dev-lib/blob/32430f45c03ce40b3755f7c2c0b03c8857154d59/phpunit-plugin-bootstrap.php
  */
 
 /**
@@ -14,7 +12,7 @@ if ( ! defined( 'WP_CONTENT_DIR' ) && getenv( 'WP_CONTENT_DIR' ) ) {
 if ( ! defined( 'WP_CONTENT_DIR' ) ) {
 	if ( file_exists( dirname( __DIR__ ) . '/wp-load.php' ) ) {
 		define( 'WP_CONTENT_DIR', dirname( __DIR__ ) . '/wp-content' );
-	} else if ( file_exists( '../../../wp-content' ) ) {
+	} elseif ( file_exists( '../../../wp-content' ) ) {
 		define( 'WP_CONTENT_DIR', dirname( dirname( dirname( getcwd() ) ) ) . '/wp-content' );
 	}
 }
@@ -74,7 +72,7 @@ function xwp_filter_active_plugins_for_phpunit( $active_plugins ) {
 	$forced_active_plugins = array();
 	if ( file_exists( WP_CONTENT_DIR . '/themes/vip/plugins/vip-init.php' ) && defined( 'WP_TEST_VIP_QUICKSTART_ACTIVATED_PLUGINS' ) ) {
 		$forced_active_plugins = preg_split( '/\s*,\s*/', WP_TEST_VIP_QUICKSTART_ACTIVATED_PLUGINS );
-	} else if ( defined( 'WP_TEST_ACTIVATED_PLUGINS' ) ) {
+	} elseif ( defined( 'WP_TEST_ACTIVATED_PLUGINS' ) ) {
 		$forced_active_plugins = preg_split( '/\s*,\s*/', WP_TEST_ACTIVATED_PLUGINS );
 	}
 	if ( ! empty( $forced_active_plugins ) ) {
@@ -92,7 +90,7 @@ function xwp_unit_test_load_plugin_file() {
 
 	// Force vip-init.php to be loaded on VIP quickstart
 	if ( file_exists( WP_CONTENT_DIR . '/themes/vip/plugins/vip-init.php' ) ) {
-		require_once( WP_CONTENT_DIR . '/themes/vip/plugins/vip-init.php' );
+		require_once WP_CONTENT_DIR . '/themes/vip/plugins/vip-init.php';
 	}
 
 	// Load this plugin

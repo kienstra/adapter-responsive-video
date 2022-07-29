@@ -1,26 +1,11 @@
 version: 2.1
 
 orbs:
-  wp-svn: studiopress/wp-svn@dev:alpha
+  php: circleci/php@1.1
 
 workflows:
   deploy:
     jobs:
-      - wp-svn/deploy:
-          context: kienstra-svn
-          filters:
-            tags:
-              only: /^\d+\.\d+\.\d+$/
-            branches:
-              ignore: /.*/
-      - approval-for-deploy-tested-up-to-bump:
-          type: approval
-          filters:
-            tags:
-              ignore: /.*/
-            branches:
-              only: /^bump-tested-up-to.*/
-      - wp-svn/deploy-tested-up-to-bump:
-          context: kienstra-svn
-          requires:
-            - approval-for-deploy-tested-up-to-bump
+      - php/test:
+          test-command: lint
+          version: '8.0'
